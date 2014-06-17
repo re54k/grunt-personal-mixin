@@ -1,0 +1,48 @@
+{
+  "name": "grunt-personal-mixin",
+  "description": "Some task collection",
+  "version": "0.0.3",
+  "homepage": "https://github.com/catnofish/grunt-personal-mixin",
+  "author": {
+    "name": "Herk Lee",
+    "email": "heke.job@gmail.com",
+    "url": "http://www.herk.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catnofish/grunt-personal-mixin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/catnofish/grunt-personal-mixin/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/catnofish/grunt-personal-mixin/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.4"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "readme": "# grunt-personal-mixin\n\n> Some task collection. Just for personal use.\n\n## Getting Started\nThis plugin requires Grunt `~0.4.5`\n\nIf you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:\n\n```shell\nnpm install grunt-personal-mixin --save-dev\n```\n\nOnce the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:\n\n```js\ngrunt.loadNpmTasks('grunt-personal-mixin');\n```\n\n## The \"mixin\" task\nJust for personal use.\n\n## Release History\n_(Nothing yet)_\n",
+  "readmeFilename": "README.md",
+  "_id": "grunt-personal-mixin@0.0.2",
+  "_shasum": "28f8cab46f4a7d31767785ed2a0795435039e153",
+  "_from": "grunt-personal-mixin@"
+}
