@@ -67,10 +67,18 @@ module.exports = function(grunt) {
 
     grunt.registerTask('date-stamp', 'Add date stamp to updated js files', function() {
         var stamp = '/*! Updated at ' + grunt.template.today("mmmm dS, yyyy, H:MM:ss") + ' */\r\n',
-            jspath = grunt.config('path.upload')+'/js';
+            uploadpath = grunt.config('path.upload'),
+            jspath = uploadpath+'/js',
+            csspath = uploadpath+'/css';
 
         if ( grunt.file.exists(jspath) ) {
             grunt.file.recurse(jspath, function callback(abspath) {
+                grunt.file.write(abspath, stamp + grunt.file.read(abspath));
+            });
+        }
+
+        if ( grunt.file.exists(csspath) ) {
+            grunt.file.recurse(csspath, function callback(abspath) {
                 grunt.file.write(abspath, stamp + grunt.file.read(abspath));
             });
         }
@@ -78,7 +86,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('upload', 'Upload files', function() {
         if ( grunt.option('nu') ) {
-            grunt.log.ok('Skipped uplaod.');
+            grunt.log.ok('Upload canceled.');
             return;
         }
         var data = grunt.config('upload').general,
