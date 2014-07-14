@@ -1,7 +1,7 @@
 {
   "name": "grunt-personal-mixin",
   "description": "Some task collection",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://github.com/catnofish/grunt-personal-mixin",
   "author": {
     "name": "Herk Lee",

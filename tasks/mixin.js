@@ -89,12 +89,18 @@ module.exports = function(grunt) {
             grunt.log.ok('Upload canceled.');
             return;
         }
-        var data = grunt.config('upload').general,
-            auth = data.auth,
+
+        var data = grunt.config('upload').general;
+        if ( !grunt.file.exists(data.src) ) {
+            grunt.log.ok('No files to upload.');
+            return;
+        }
+
+        var auth = data.auth,
             authKey = auth.authKey || auth.host,
             authVals = grunt.file.readJSON('.ftppass')[authKey],
             exec = require('child_process').exec,
-            cmd = 'lftp -c "open -e \'mirror -R -p ' + data.src + ' ' + data.dest + '\'' + ' -p ' + auth.port + ' -u ' + authVals.username + ',' + authVals.password + ' ' + auth.host + '"';
+            cmd = 'lftp ftp://' + authVals.username + ':' + authVals.password + '@' + auth.host + ':' + auth.port + ' -e "set ssl:verify-certificate no;mirror -R -p ' + data.src + ' ' + data.dest + ';quit"';
 
         var done = this.async();
         exec(cmd, function(err) {
