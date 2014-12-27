@@ -38,8 +38,8 @@ module.exports = function(grunt) {
             });
         }
 
-        var rms = grunt.config('replace.general.replacements');
-        grunt.config('replace.general.replacements', rms.concat(filters));
+        var rms = grunt.config('replace.local.replacements');
+        grunt.config('replace.local.replacements', rms.concat(filters));
     });
 
     grunt.registerTask('compile-scss', 'Compile scss files', function() {
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('tt', 'Test task', function(mode, task, target) {
         var t = task + (target ? ':'+target : '');
-        grunt.task.run(['init:' + mode, t]);
+        grunt.task.run(['init:' + mode, 'date-stamp', t]);
     });
 
     grunt.registerTask('empty', 'If clean the upload directory', function() {
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('date-stamp', 'Add date stamp to updated js files', function() {
+    grunt.registerTask('date-stamp', 'Add date stamp to updated js & css files', function() {
         var stamp = '/*! Updated at ' + grunt.template.today("mmmm dS, yyyy, H:MM:ss") + ' */\r\n',
             uploadpath = grunt.config('path.upload'),
             jspath = uploadpath+'/js',
@@ -97,8 +97,8 @@ module.exports = function(grunt) {
         }
 
         var auth = data.auth,
-            authKey = auth.authKey || auth.host,
-            authVals = grunt.file.readJSON('.ftppass')[authKey],
+            authKey = auth.authKey,
+            authVals = authKey ? grunt.file.readJSON('.ftppass')[authKey] : auth,
             exec = require('child_process').exec,
             cmd = 'lftp ftp://' + authVals.username + ':' + authVals.password + '@' + auth.host + ':' + auth.port + ' -e "set ssl:verify-certificate no;mirror -R -p ' + data.src + ' ' + data.dest + ';quit"';
 
@@ -110,9 +110,9 @@ module.exports = function(grunt) {
         });
 
         // 清缓存
-        if ( grunt.option('mode') == 'pro' && !grunt.option('nc') ) {
-            grunt.task.run('clearcache');
-        }
+        //if ( grunt.option('mode') == 'pro' && !grunt.option('nc') ) {
+        //    grunt.task.run('clearcache');
+        //}
     });
 
     grunt.registerTask('submit', 'Submit to SVN', function() {
