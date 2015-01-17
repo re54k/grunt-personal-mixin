@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('tt', 'Test task', function(mode, task, target) {
         var t = task + (target ? ':'+target : '');
-        grunt.task.run(['init:' + mode, 'date-stamp', t]);
+        grunt.task.run(['init:' + mode, t]);
     });
 
     grunt.registerTask('empty', 'If clean the upload directory', function() {
