@@ -60,7 +60,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('empty', 'If clean the upload directory', function() {
-        if ( grunt.option('cl') ) {
+        if ( !grunt.option('nc') ) {
             grunt.task.run('clean');
         }
     });
@@ -108,11 +108,6 @@ module.exports = function(grunt) {
             grunt.log.ok('Uploaded all files.');
             done();
         });
-
-        // 清缓存
-        //if ( grunt.option('mode') == 'pro' && !grunt.option('nc') ) {
-        //    grunt.task.run('clearcache');
-        //}
     });
 
     grunt.registerTask('submit', 'Submit to SVN', function() {
