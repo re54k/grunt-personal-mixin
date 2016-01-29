@@ -105,7 +105,7 @@ module.exports = function(grunt) {
         var done = this.async();
         exec(cmd, function(err) {
             err && grunt.fatal(err);
-            grunt.log.ok('Uploaded all files.');
+			grunt.log.ok('Upload all files to path: ' + data.dest);
             done();
         });
     });
